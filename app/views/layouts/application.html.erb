@@ -3,6 +3,7 @@
   <head>
     <title>MessageMe</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= favicon_link_tag %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -11,6 +12,18 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render 'layouts/navigation' %>
+    <div class="ui container">
+      <% flash.each do |name, msg|%>
+        <div class="ui <%= name %> message transition" >
+          <i class = "close icon"></i>
+          <div class="header">
+            <%= msg%>
+          </div>
+        </div>
+    <% end %>
+      <%= yield %>
+    </div>
+    
   </body>
 </html>
